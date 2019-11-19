@@ -4,11 +4,11 @@ class BooksController < ApplicationController
   end
 
   def create
-    render json: Book.create(book_params)
+    Book.create(book_params)
   end
 
   def destroy
-    render json: Book.find(params[:id]).destroy
+    Book.find(params[:id]).destroy
   end
 
   private
