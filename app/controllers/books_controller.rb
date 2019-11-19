@@ -4,11 +4,15 @@ class BooksController < ApplicationController
   end
 
   def create
-    Book.create(book_params)
+    respond_to do |format|
+      format.json { Book.create(book_params) }
+    end
   end
 
   def destroy
-    Book.find(params[:id]).destroy
+    respond_to do |format|
+      format.json { Book.find(params[:id]).destroy }
+    end
   end
 
   private
