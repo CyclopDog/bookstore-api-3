@@ -1,17 +1,21 @@
 class BooksController < ApplicationController
   def index
-    render json: Book.order('title ASC')
+    render json: current_user.books.order('title ASC')
   end
 
   def create
-    respond_to do |format|
-      format.json { Book.create(book_params) }
+    @book = current_user.books.new(book_params)
+    if @book.save
+      render json: { status: 'ok' }
+    else
+      render json: { status: 'error', errMsgs: @book.errors.full_messages }
     end
   end
 
   def destroy
-    respond_to do |format|
-      format.json { Book.find(params[:id]).destroy }
+    @book = current_user.books.find(params[:id])
+    if @book
+      @book.destroy
     end
   end
 

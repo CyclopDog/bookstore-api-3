@@ -31,7 +31,9 @@ default: &default
 
 development:
   <<: *default
-  database: FaceApp_development
+  database: bookstore
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASS'] %>
 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
