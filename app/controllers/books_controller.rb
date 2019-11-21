@@ -4,8 +4,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.new(book_params)
-    if @book.save
+    book = current_user.books.new(book_params)
+    if book.save
       render json: { status: 'ok' }
     else
       render json: { status: 'error', errMsgs: @book.errors.full_messages }
@@ -13,9 +13,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = current_user.books.find(params[:id])
+    book = current_user.books.find(params[:id])
     if @book
-      @book.destroy
+      book.destroy
     end
   end
 
