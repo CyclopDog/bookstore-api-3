@@ -1,23 +1,16 @@
 class UsersController < ApplicationController
   def show
-
   end
 
   def new
-    if @status = 'ok'
-      render json: { username: current_user.username }
-    else
-      render json: { errMsgs: @user.errors.full_messages }
-    end
   end
 
   def create
     user = User.new(user_params)
     if user.save
-      log_in @user
-      @status = 'ok'
+      log_in user
     else
-      @status = 'error'
+      render json: user.errors.full_messages
     end
   end
 

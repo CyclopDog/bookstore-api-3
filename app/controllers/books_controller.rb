@@ -6,9 +6,9 @@ class BooksController < ApplicationController
   def create
     book = current_user.books.new(book_params)
     if book.save
-      render json: { status: 'ok' }
+
     else
-      render json: { status: 'error', errMsgs: @book.errors.full_messages }
+
     end
   end
 
