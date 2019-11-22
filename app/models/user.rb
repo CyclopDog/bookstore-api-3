@@ -5,8 +5,8 @@ class User < ApplicationRecord
   validates :username,  
             presence: true, 
             length: { minimum: 5, maximum: 12 }, 
-            format: { with: VALID_USERNAME_REGEX }, 
             uniqueness: { case_sensitive: false }
+  validates_format_of :username, with: VALID_USERNAME_REGEX, message: 'is invalid (only letters and digits)'
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 end
